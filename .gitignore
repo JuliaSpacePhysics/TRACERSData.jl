@@ -4,3 +4,5 @@
 /Manifest*.toml
 /docs/Manifest*.toml
 /docs/build/
+tracers_data/
+ELFINData.jl

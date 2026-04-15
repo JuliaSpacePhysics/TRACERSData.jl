@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:tracers.physics.uiowa.edu)",
+      "WebFetch(domain:tracers-portal.physics.uiowa.edu)"
+    ]
+  }
+}

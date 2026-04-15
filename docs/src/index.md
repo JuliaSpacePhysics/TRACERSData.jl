@@ -15,6 +15,12 @@ using Pkg
 Pkg.add("TRACERSData")
 ```
 
+An [agent skill](https://agentskills.io) is included for using `TRACERSData.jl` with natural language. To install it using [`skills`](https://github.com/vercel-labs/skills), run:
+
+```sh
+npx skills add JuliaSpacePhysics/TRACERSData.jl
+```
+
 ## Quick Start
 
 The examples below walk through the typical workflow: discover an instrument's datasets, load data for a specified time range, and access variables.
@@ -44,54 +50,6 @@ Access individual variables from the loaded CDF dataset using bracket indexing:
 
 ```julia
 ds["ts2_l2_ace_def"]  # differential energy flux [49 energies × 21 anodes × Epoch]
-```
-
-## Instruments
-
-### ACE — Analyzer of Cusp Electrons
-
-Measures electron energy spectra and pitch-angle distributions. 49 energy steps × 21 anodes, 50 ms cadence.
-
-```@example quick_start
-# ACE Level 2: default electron spectra (counts + differential energy flux)
-ACE(; probe = "ts2", level = "l2")
-
-# ACE Level 3: pitch-angle resolved distributions
-ACE(; probe = "ts2", level = "l3")
-```
-
-### ACI — Analyzer of Cusp Ions
-
-Toroidal top-hat electrostatic analyzer for ion flux and pitch-angle distributions. 47 energy steps, 312 ms cadence.
-
-```@example quick_start
-ACI(; probe = "ts2")
-```
-
-### MSC — Magnetic Search Coil
-
-3-axis AC magnetic field waveforms at 2048 S/s, amplitude-calibrated at 100 Hz. Available in TSCS and FAC coordinates.
-
-```@example quick_start
-MSC(; probe = "ts2")
-```
-
-### MAGIC — Magnetometer Demonstration
-
-3-axis DC magnetic field at 128 S/s (ROI) / 16 S/s (back orbit). Available in instrument frame, GEI2000, and NEC coordinates.
-
-```@example quick_start
-MAGIC(; probe = "ts2")
-```
-
-### ROI — Region of Interest
-
-Event interval lists in CSV format. Returns a `DataFrame`.
-
-Call it to download and parse the CSV:
-
-```@example quick_start
-roi_df = TS2_ROI()  # returns DataFrame
 ```
 
 ## Quick Plots
@@ -156,41 +114,16 @@ pa_slice = setmeta(da[Y(Near(15.0f0))], "CATDESC" => "Pitch Angle Bin: 10-20°")
 fig = tplot([en_avg, pa_avg, e_slice, pa_slice], t0, t1; add_title = true)
 ```
 
-## Data Loading Crib
+### ROI — Region of Interest
 
-### Full loading example
+Event interval lists in CSV format. Returns a `DataFrame`.
 
-```julia
-using TRACERSData
-using Dates
+Call it to download and parse the CSV:
 
-t0 = DateTime("2025-09-30")
-t1 = DateTime("2025-10-01")
-
-# ── ACE Load ──────────────────────────────────────────────
-ace_ds = TS2_L2_ACE_DEF(t0, t1)
-ace_eflux  = ace_ds["ts2_l2_ace_def"]       # differential energy flux [49 energies × 21 anodes]
-ace_counts = ace_ds["ts2_l2_ace_counts"]     # raw counts
-ace_bg     = ace_ds["ts2_l2_ace_background_counts"]  # background counts
-ace_energy = ace_ds["ts2_l2_ace_energy"]     # energy bins [eV]
-ace_angle  = ace_ds["ts2_l2_ace_TSCS_anode_angle"]   # anode look angles [deg]
-
-# ACE L3 — pitch-angle distributions
-ace_l3 = TS2_L3_ACE_PITCH_ANGLE_DIST(t0, t1)
-
-# ── ACI Load ──────────────────────────────────────────────
-aci_ds = TS2_L2_ACI_IPD(t0, t1)
-
-# ── MSC Load ──────────────────────────────────────────────
-msc_ds = TS2_L2_MSC_BAC(t0, t1)
-
-# ── MAGIC Load ────────────────────────────────────────────
-magic_ds = TS2_L2_MAGIC(t0, t1)
-
-# ── ROI (DataFrame of event intervals) ───────────────────────────────────────────────────
-roi_df = TS2_ROI()
+```@example quick_start
+roi_df = TS2_ROI();  # returns DataFrame
+first(roi_df, 5)
 ```
-
 
 ## API
 

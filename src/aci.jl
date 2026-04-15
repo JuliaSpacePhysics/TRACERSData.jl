@@ -36,7 +36,6 @@ pitch-angle distributions. 47 energy steps (8 eV/e – 20 keV/e), 312 ms cadence
 
 ```julia
 ACI(; probe="ts2")  # resolve dataset
-ACI("2025-09-27", "2025-09-28"; probe="ts2")  # load data
 ```
 """
 const ACI = TRACERSInstrument(

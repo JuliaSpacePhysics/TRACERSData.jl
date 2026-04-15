@@ -57,8 +57,8 @@ Analyzer of Cusp Electrons. Measures electron energy spectra and pitch-angle dis
 # Usage
 
 ```julia
-ACE(; probe="ts2", level="l2")  # resolve dataset
-ACE("2025-09-27", "2025-09-28"; probe="ts2", level="l2")  # load data
+ACE(; probe="ts2", level="l3")  # resolve dataset (default: ts2, l2)
+ACE()("2025-09-27", "2025-09-28")  # load data
 ```
 """
 const ACE = TRACERSInstrument(

@@ -36,7 +36,6 @@ amplitude-calibrated at 100 Hz. Complex frequency response calibration included 
 
 ```julia
 MSC(; probe="ts2")  # resolve dataset
-MSC("2025-09-27", "2025-09-28"; probe="ts2")  # load data
 ```
 """
 const MSC = TRACERSInstrument(

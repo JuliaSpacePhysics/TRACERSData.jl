@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Home · TRACERSData.jl</title><meta name="title" content="Home · TRACERSData.jl"/><meta property="og:title" content="Home · TRACERSData.jl"/><meta property="twitter:title" content="Home · TRACERSData.jl"/><meta name="description" content="Documentation for TRACERSData.jl."/><meta property="og:description" content="Documentation for TRACERSData.jl."/><meta property="twitter:description" content="Documentation for TRACERSData.jl."/><script data-outdated-warner src="assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="assets/documenter.js"></script><script src="search_index.js"></script><script src="siteinfo.js"></script><script src="../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="assets/themeswap.js"></script></head><body>
+<!-- NAVBAR START -->
+<style>
+    html {
+        scroll-padding-top: calc(55px + 1rem);
+    }
+
+    /* Documenter css tweaks */
+    .docs-sidebar {
+        margin-top: 3.75rem;
+    }
+
+    #documenter {
+        margin-top: 3.75rem;
+    }
+
+    .docs-version-selector {
+        margin-bottom: 60px !important;
+    }
+
+    @media screen and (max-width: 1056px) {
+        .docs-version-selector {
+            margin-bottom: 60px !important;
+        }
+
+        .docs-sidebar {
+            margin-top: 0 !important;
+        }
+    }
+    /* Documenter css tweaks ends here */
+
+    :root {
+        --heading-color: white;
+        --item-color: rgb(165, 165, 165);
+        --primary-bg: #f8f9fa;  /* Light gray to match Quarto's default navbar */
+        --navbar-text: #212529;  /* Dark text color for better contrast */
+        --hover-color: #e9ecef;  /* Slightly darker gray for hover state */
+        --deprecated-bg: #ff4d4d;
+        --deprecated-text: white;
+    }
+
+    .ext-navigation {
+        position: fixed;
+        height: 3.75rem;
+        top: 0;
+        width: 100%;
+        background-color: var(--primary-bg);
+        color: var(--navbar-text);
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        padding: 0 1.0625rem;
+        transition: transform 0.3s;
+    }
+
+    .ext-navbar-logo {
+        margin-left: 0.625rem;
+    }
+
+    .ext-nav-links {
+        display: flex;
+        align-items: center;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        flex-grow: 1;
+    }
+
+    .ext-nav-links li {
+        margin-left: 1rem !important;
+    }
+
+    .ext-nav-link {
+        color: var(--navbar-text) !important;
+        text-decoration: none;
+        font-size: 1.0625rem !important;
+        transition: color 0.2s ease;
+        cursor: pointer;
+    }
+
+    .ext-nav-link:hover,
+    .ext-navbar-item-single a:hover {
+        color: var(--hover-color) !important;
+        text-decoration: none !important;
+    }
+    
+    .ext-navigation a {
+        text-decoration: none !important;
+    }
+
+    .ext-navbar-item-single a {
+        color: var(--navbar-text) !important;
+    }
+
+    .ext-menu-toggle {
+        display: none;
+        font-size: 1.5rem;
+        color: white;
+        cursor: pointer;
+    }
+
+    .ext-dropdown {
+        display: none;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        padding: 1.875rem;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        background-color: var(--primary-bg);
+        line-height: 1.875rem;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        transform: translateY(-0.625rem);
+    }
+
+    #library-handler::after {
+        content: "▼";
+        font-size: 0.6875rem;
+        margin-left: 0.3125rem;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    #library-handler.open::after {
+        content: "▲";
+    }
+
+    .ext-dropdown.show {
+        display: grid;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .ext-dropdown ul {
+        height: auto;
+        width: 12.5rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .ext-dropdown ul li {
+        text-align: left;
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar-sub-item {
+        list-style: none;
+    }
+
+    .ext-dropdown ul a li {
+        color: var(--item-color);
+        width: 15.625rem;
+        border-radius: 3px;
+        padding: 0.125rem 0.625rem;
+        transition: background-color 0.2s ease;
+        text-decoration: none !important;
+    }
+
+    .ext-dropdown ul a li:hover {
+        background-color: rgba(107, 107, 107, 0.5);
+    }
+
+    .ext-dropdown-item-heading {
+        /* color: var(--heading-color); */
+        text-align: center;
+    }
+
+    .deprecated-badge {
+        background-color: var(--deprecated-bg);
+        color: var(--deprecated-text);
+        font-size: 0.75rem;
+        padding: 0.125rem 0.375rem;
+        border-radius: 3px;
+        margin-left: 0.5rem;
+        line-height: 1;
+    }
+
+    /* Responsive styling */
+    @media (max-width: 966px) {
+        .ext-dropdown {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .ext-nav-links {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background-color: var(--primary-bg);
+            position: absolute;
+            top: 3.75rem;
+            left: 0;
+            padding: 0.625rem 0;
+            height: auto;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgb(141, 141, 141) grey;
+        }
+
+        .ext-nav-links.show {
+            display: flex;
+        }
+
+        .ext-nav-links li {
+            margin: 0.625rem 0;
+            text-align: center;
+        }
+
+        .ext-menu-toggle {
+            display: block;
+            margin-left: auto;
+        }
+
+        .ext-navigation.hide {
+            transform: translateY(-3.75rem);
+        }
+
+        .ext-dropdown {
+            place-content: center;
+            text-align: center;
+            grid-template-columns: 1fr;
+            line-height: 1.25rem;
+            padding: 0.625rem;
+        }
+
+        .ext-dropdown ul {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 0.3125rem;
+        }
+
+        .ext-dropdown ul li {
+            text-align: center;
+            /* justify-content: center; */
+        }
+
+        .ext-dropdown ul a li {
+            width: 100%;
+        }
+
+        .ext-dropdown ul a li:hover {
+            background-color: var(--primary-bg);
+            /* color: #fff; */
+        }
+
+        /* Modified scroll bar */
+        .ext-nav-links::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .ext-nav-links::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey;
+        }
+
+        .ext-nav-links::-webkit-scrollbar-thumb {
+            background: rgb(141, 141, 141);
+            border-radius: 3px;
+        }
+
+        .ext-nav-links::-webkit-scrollbar-thumb:hover {
+            background: #9b9b9b;
+        }
+    }
+</style>
+<nav class="ext-navigation">
+    <a href="https://juliaspacephysics.github.io"></a>
+    <a style="color: #212529 !important; font-size: 21.25px !important; margin-left: 10px;" href="https://juliaspacephysics.github.io">JuliaSpacePhysics</a>
+    <ul class="ext-nav-links">
+        <li>
+            <p class="ext-nav-link" id="library-handler">Ecosystem</p>
+            <div class="ext-dropdown" id="ext-dropdown-items">
+                <ul>
+                    <li class="ext-dropdown-item-heading">Core</li>
+                    <a href="https://juliaspacephysics.github.io/SPEDAS.jl"><li>SPEDAS.jl</li></a>
+                    <a href="https://juliaspacephysics.github.io/SpaceDataModel.jl"><li>SpaceDataModel.jl</li></a>
+                    <a href="https://juliaspacephysics.github.io/GeoCotrans.jl"><li>GeoCotrans.jl</li></a>
+                    <a href="https://henry2004y.github.io/TestParticle.jl/"><li>TestParticle.jl</li></a>
+                </ul>
+                <ul>
+                    <li class="ext-dropdown-item-heading">Data</li>
+                    <a href="https://juliaspacephysics.github.io/CDFDatasets.jl/"><li>CDFDatasets.jl</li></a>
+                    <a href="https://juliaspacephysics.github.io/CDAWeb.jl/"><li>CDAWeb.jl</li></a>
+                    <a href="https://sciqlop.github.io/Speasy.jl/"><li>Speasy.jl</li></a>
+                    <a href="https://juliaspacephysics.github.io/HAPIClient.jl/"><li>HAPIClient.jl</li></a>
+                    <a href="https://juliaspacephysics.github.io/Madrigal.jl/"><li>Madrigal.jl</li></a>
+                    <a href="https://github.com/JuliaSpacePhysics/PySPEDAS.jl"><li>PySPEDAS.jl</li></a>
+                    <a href="https://juliaspacephysics.github.io/SunPy.jl/"><li>SunPy.jl</li></a>
+                    <a href="https://juliaspacephysics.github.io/CommonDataFormat.jl/"><li>CommonDataFormat.jl</li></a>
+                </ul>
+                <ul>
+                    <li class="ext-dropdown-item-heading">Domain</li>
+                    <a href="https://juliaspacephysics.github.io/SpaceWeather.jl"><li>SpaceWeather.jl</li></a>
+                    <a href="https://juliaspacephysics.github.io/SolarEnergeticParticle.jl"><li>SolarEnergeticParticle.jl (Helio)</li></a>
+                    <a href="https://juliaspacephysics.github.io/GeoAACGM.jl"><li>GeoAACGM.jl (ITM)</li></a>
+                    <a href="https://juliaspacephysics.github.io/IRBEM.jl"><li>IRBEM.jl (Magnetosphere)</li></a>
+                    <a href="https://juliaspacephysics.github.io/TsyganenkoModels.jl"><li>TsyganenkoModels.jl (Magnetosphere)</li></a>
+                </ul>
+                <!-- Enable when more mission-specific packages are available -->
+                <ul>
+                    <li class="ext-dropdown-item-heading">Mission-specific</li>
+                    <a href="https://juliaspacephysics.github.io/EISCATData.jl"><li>EISCATData.jl</li></a>
+                    <a href="https://juliaspacephysics.github.io/ELFINData.jl"><li>ELFINData.jl</li></a>
+                    <a href="https://juliaspacephysics.github.io/DMSPData.jl"><li>DMSPData.jl</li></a>
+                </ul>
+               
+                <ul>
+                    <li class="ext-dropdown-item-heading">General Analysis</li>
+                    <a href="https://juliaplasma.github.io/PlasmaFormulary.jl"><li>JuliaPlasma/PlasmaFormulary.jl</li></a>
+                    <a href="https://juliaplasma.github.io/ChargedParticles.jl"><li>JuliaPlasma/ChargedParticles.jl</li></a>
+                    <a href="https://juliaspacephysics.github.io/VelocityDistributionFunctions.jl"><li>VelocityDistributionFunctions.jl</li></a>
+                    <a href="https://juliaspacephysics.github.io/PlasmaWaves.jl"><li>PlasmaWaves.jl</li></a>
+                    <a href="https://juliaspacephysics.github.io/PlasmaBO.jl"><li>PlasmaBO.jl</li></a>
+                    <a href="https://github.com/JuliaSpacePhysics/SpacePhysicsMakie.jl"><li>SpacePhysicsMakie.jl</li></a>
+                </ul>
+            </div>
+        </li>
+        <li><a href="https://juliaspacephysics.github.io/tutorials/">Tutorials</a></li>
+    </ul>
+    <a href="https://github.com/JuliaSpacePhysics">
+        <svg width="32px" height="32px" viewBox="-8.2 -8.2 36.40 36.40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <title>github [#142]</title>
+                <desc>JuliaSpacePhysics</desc>
+                <defs></defs>
+                <g id="Page-1" stroke-width="0.0002" fill="none" fill-rule="evenodd">
+                    <g id="Dribbble-Light-Preview" transform="translate(-140.000000, -7559.000000)" fill="#ffffff">
+                        <g id="icons" transform="translate(56.000000, 160.000000)">
+                            <path
+                                d="M94,7399 C99.523,7399 104,7403.59 104,7409.253 C104,7413.782 101.138,7417.624 97.167,7418.981 C96.66,7419.082 96.48,7418.762 96.48,7418.489 C96.48,7418.151 96.492,7417.047 96.492,7415.675 C96.492,7414.719 96.172,7414.095 95.813,7413.777 C98.04,7413.523 100.38,7412.656 100.38,7408.718 C100.38,7407.598 99.992,7406.684 99.35,7405.966 C99.454,7405.707 99.797,7404.664 99.252,7403.252 C99.252,7403.252 98.414,7402.977 96.505,7404.303 C95.706,7404.076 94.85,7403.962 94,7403.958 C93.15,7403.962 92.295,7404.076 91.497,7404.303 C89.586,7402.977 88.746,7403.252 88.746,7403.252 C88.203,7404.664 88.546,7405.707 88.649,7405.966 C88.01,7406.684 87.619,7407.598 87.619,7408.718 C87.619,7412.646 89.954,7413.526 92.175,7413.785 C91.889,7414.041 91.63,7414.493 91.54,7415.156 C90.97,7415.418 89.522,7415.871 88.63,7414.304 C88.63,7414.304 88.101,7413.319 87.097,7413.247 C87.097,7413.247 86.122,7413.234 87.029,7413.87 C87.029,7413.87 87.684,7414.185 88.139,7415.37 C88.139,7415.37 88.726,7417.2 91.508,7416.58 C91.513,7417.437 91.522,7418.245 91.522,7418.489 C91.522,7418.76 91.338,7419.077 90.839,7418.982 C86.865,7417.627 84,7413.783 84,7409.253 C84,7403.59 88.478,7399 94,7399"
+                                id="github-[#142]">
+                            </path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </svg>
+    </a>
+    <span class="ext-menu-toggle">&#9776;</span>
+</nav>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const menuToggle = document.querySelector(".ext-menu-toggle");
+        const navLinks = document.querySelector(".ext-nav-links");
+        const nav = document.querySelector(".ext-navigation");
+        const navigationHandler = document.getElementById("library-handler");
+        const navigationItemsContainer =
+            document.getElementById("ext-dropdown-items");
+        let lastScrollY = window.scrollY;
+
+        function setAppropriateHeight() {
+            if (window.innerWidth <= 768) {
+                const viewportHeight = window.innerHeight;
+                const navHeight = nav.offsetHeight;
+                navLinks.style.maxHeight = `${viewportHeight - navHeight}px`;
+                navLinks.style.overflowY = "auto";
+            } else {
+                navLinks.style.maxHeight = "";
+                navLinks.style.overflowY = "";
+            }
+        }
+
+        // Toggle main menu for mobile
+        menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("show");
+            if (navLinks.classList.contains("show")) {
+                setAppropriateHeight();
+                // Ensure the dropdown is hidden when menu is first opened
+                navigationItemsContainer.style.display = "none";
+                navigationItemsContainer.classList.remove("show");
+            }
+        });
+
+        // Close menus if clicked outside
+        document.addEventListener("click", (event) => {
+            if (
+                !navLinks.contains(event.target) &&
+                !menuToggle.contains(event.target)
+            ) {
+                navLinks.classList.remove("show");
+                navigationItemsContainer.classList.remove("show");
+                navigationHandler.classList.remove("open");
+            }
+        });
+
+        // Hide navigation bar on scroll down in mobile view
+        window.addEventListener("scroll", () => {
+            if (window.innerWidth <= 768) {
+                nav.classList.toggle("hide", window.scrollY > lastScrollY);
+                lastScrollY = window.scrollY;
+            }
+        });
+
+        // Library API script
+        navigationHandler.addEventListener("click", (event) => {
+            event.preventDefault(); // Prevent default action of the link
+            if (navigationItemsContainer.classList.contains("show")) {
+                navigationItemsContainer.classList.remove("show");
+                navigationHandler.classList.remove("open");
+                setTimeout(() => {
+                    navigationItemsContainer.style.display = "none";
+                }, 500); // Match the timeout to the CSS transition duration
+            } else {
+                navigationItemsContainer.style.display = "grid";
+                navigationHandler.classList.add("open");
+                setTimeout(() => {
+                    navigationItemsContainer.classList.add("show");
+                }, 10); // Delay to ensure the display change takes effect before adding class
+            }
+            setAppropriateHeight(); // Recalculate height when dropdown changes
+        });
+
+        // Handle window resize
+        window.addEventListener("resize", setAppropriateHeight);
+
+        // Initial setup
+        setAppropriateHeight();
+    });
+</script>
+<!-- NAVBAR END -->
+<div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href>TRACERSData.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li class="is-active"><a class="tocitem" href>Home</a><ul class="internal"><li><a class="tocitem" href="#Installation"><span>Installation</span></a></li><li><a class="tocitem" href="#Quick-Start"><span>Quick Start</span></a></li><li><a class="tocitem" href="#Quick-Plots"><span>Quick Plots</span></a></li><li><a class="tocitem" href="#API"><span>API</span></a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>Home</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Home</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/JuliaSpacePhysics/TRACERSData.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/JuliaSpacePhysics/TRACERSData.jl/blob/main/docs/src/index.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="TRACERSData"><a class="docs-heading-anchor" href="#TRACERSData">TRACERSData</a><a id="TRACERSData-1"></a><a class="docs-heading-anchor-permalink" href="#TRACERSData" title="Permalink"></a></h1><article><details class="docstring" open="true"><summary id="TRACERSData.TRACERSData"><a class="docstring-binding" href="#TRACERSData.TRACERSData"><code>TRACERSData.TRACERSData</code></a> — <span class="docstring-category">Module</span></summary><section><div><pre><code class="language-julia hljs">TRACERSData</code></pre><p>Load data from the <a href="https://tracers.physics.uiowa.edu/">TRACERS</a> (Tandem Reconnection and Cusp Electrodynamics Reconnaissance Satellites) mission.</p><p><strong>Available Instruments</strong></p><ul><li><a href="#TRACERSData.ACE"><code>ACE</code></a>: Analyzer of Cusp Electrons (L2, L3)</li><li><a href="#TRACERSData.ACI"><code>ACI</code></a>: Analyzer of Cusp Ions (L2)</li><li><a href="#TRACERSData.MSC"><code>MSC</code></a>: Magnetic Search Coil (L2)</li><li><a href="#TRACERSData.MAGIC"><code>MAGIC</code></a>: Magnetometer Demonstration (L2)</li><li><a href="#TRACERSData.TS1_ROI"><code>TS1_ROI</code></a>, <a href="#TRACERSData.TS2_ROI"><code>TS2_ROI</code></a>: Region of Interest event intervals</li></ul><p><strong>Quick Example</strong></p><pre><code class="language-julia hljs">using TRACERSData
+
+# Load ACE L2 data for TS2
+TS2_L2_ACE_DEF(&quot;2025-09-27&quot;, &quot;2025-09-28&quot;)</code></pre><p><strong>Data Portal</strong></p><p>Public data is served from <a href="https://tracers-portal.physics.uiowa.edu/">https://tracers-portal.physics.uiowa.edu/</a>.</p></div><a class="docs-sourcelink" target="_blank" href="https://github.com/JuliaSpacePhysics/TRACERSData.jl/blob/2264f5eab4554b96107c02ee0e72be764279b0ac/src/TRACERSData.jl#L1-L26">source</a></section></details></article><h2 id="Installation"><a class="docs-heading-anchor" href="#Installation">Installation</a><a id="Installation-1"></a><a class="docs-heading-anchor-permalink" href="#Installation" title="Permalink"></a></h2><pre><code class="language-julia hljs">using Pkg
+Pkg.add(&quot;TRACERSData&quot;)</code></pre><p>An <a href="https://agentskills.io">agent skill</a> is included for using <code>TRACERSData.jl</code> with natural language. To install it using <a href="https://github.com/vercel-labs/skills"><code>skills</code></a>, run:</p><pre><code class="language-sh hljs">npx skills add JuliaSpacePhysics/TRACERSData.jl</code></pre><h2 id="Quick-Start"><a class="docs-heading-anchor" href="#Quick-Start">Quick Start</a><a id="Quick-Start-1"></a><a class="docs-heading-anchor-permalink" href="#Quick-Start" title="Permalink"></a></h2><p>The examples below walk through the typical workflow: discover an instrument&#39;s datasets, load data for a specified time range, and access variables.</p><pre><code class="language-julia hljs">using TRACERSData
+
+# Inspect the ACE instrument&#39;s datasets
+ACE.datasets</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">(ts1_l2_def = TS1_L2_ACE_DEF, ts2_l2_def = TS2_L2_ACE_DEF, ts1_l3_pad = TS1_L3_ACE_PITCH_ANGLE_DIST, ts2_l3_pad = TS2_L3_ACE_PITCH_ANGLE_DIST)</code></pre><p>From the Julia REPL you can also type <code>?ACE</code> to view the <a href="#TRACERSData.ACE">ACE</a> documentation.</p><pre><code class="language-julia hljs"># Resolve a dataset by name
+TS2_L2_ACE_DEF</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi"><span class="sgr1">TRACERSLogicalDataset: </span><span class="sgr33">TS2_L2_ACE_DEF</span>
+  Probe (Probe): 
+    TS2
+  Level (String): 
+    l2
+  Datatype (String): 
+    ace_def
+  Url_Pattern (Pattern): 
+    TRACERSData.Pattern(&quot;https://tracers-portal.physics.uiowa.edu/L2/TS2/{Y}/{M:02d}/{D:02d}/ts2_l2_ace_def_{YMD}_v1.1.0.cdf&quot;)
+  Metadata (NamedTuple): 
+    (description = &quot;ACE Level 2 default electron spectra (counts + differential energy flux)&quot;,)</code></pre><p>Then call it with a time range to download and load CDF data:</p><pre><code class="language-julia hljs"># Download + load CDF data for a time range
+ds = TS2_L2_ACE_DEF(&quot;2025-09-30&quot;, &quot;2025-10-01&quot;)</code></pre><p>Access individual variables from the loaded CDF dataset using bracket indexing:</p><pre><code class="language-julia hljs">ds[&quot;ts2_l2_ace_def&quot;]  # differential energy flux [49 energies × 21 anodes × Epoch]</code></pre><h2 id="Quick-Plots"><a class="docs-heading-anchor" href="#Quick-Plots">Quick Plots</a><a id="Quick-Plots-1"></a><a class="docs-heading-anchor-permalink" href="#Quick-Plots" title="Permalink"></a></h2><pre><code class="language-julia hljs">using TRACERSData
+using Dates
+using TRACERSData
+using DimensionalData
+using NaNStatistics: nanmean
+using SpacePhysicsMakie, WGLMakie
+using SpaceDataModel: setmeta
+
+t0 = DateTime(&quot;2025-09-30T09:40&quot;)
+t1 = DateTime(&quot;2025-09-30T10:10&quot;)
+
+ace_ds = TS2_L2_ACE_DEF(t0, t1)
+eflux  = DimArray(ace_ds[&quot;ts2_l2_ace_def&quot;])
+counts = DimArray(ace_ds[&quot;ts2_l2_ace_counts&quot;])
+
+eflux.metadata[&quot;VAR_NOTES&quot;]</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">&quot;ACE electron differential energy flux as a function of epoch,  energy (49 bins) and look angle (21 directions). Note that small negative values are allowed, due to background subtraction.&quot;</code></pre><pre><code class="language-julia hljs">eflux = setmeta(eflux, &quot;UNITS&quot; =&gt; &quot;eV / (eV cm² sr s)&quot;)
+eflux[eflux .&lt;= 0] .= 0
+counts = setmeta(counts, :colorscale =&gt; log10)
+
+# Average over anodes (dim 2) → energy-time, same as IDL: total(def, 2) / 21
+en_eflux  = nanmean(eflux; dim=2)
+en_counts = nanmean(counts; dim=2)
+
+# Average over energies (dim 1) → anode-time, same as IDL: total(def, 1) / 49
+an_eflux  = nanmean(eflux; dim=1)
+an_counts = nanmean(counts; dim=1)
+
+tplot([en_eflux, an_eflux, en_counts, an_counts], t0, t1; colormap = :rainbow_bgyrm_35_85_c69_n256)</code></pre><div><div class="bonito-fragment" id="b2c1852e-aa1d-45f4-b18b-29219461ae8b" data-jscall-id="root"><div><script src="bonito/js/Bonito.bundled7919512299027874894.js" type="module"></script><style></style></div><div><script type="module">Bonito.init_session("b2c1852e-aa1d-45f4-b18b-29219461ae8b", Bonito.fetch_binary('bonito/bin/8c5a03d725a5f2b95bc3685fcf89fdc524bd8022-7378908766348735770.bin'), "root", false);
+</script><div></div></div></div><div class="bonito-fragment" id="d260b830-7e44-4f24-b9cc-931a42cce769" data-jscall-id="subsession-application-dom"><div><style></style><style>.wglmakie-spinner {
+  left: 50%;
+  z-index: 1000;
+  height: 40px;
+  position: absolute;
+  border-radius: 50%;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  animation: wglmakie-spin 1.0s linear infinite;
+  top: 50%;
+  border-top: 4px solid currentColor;
+  width: 40px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+@keyframes wglmakie-spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+</style></div><div><script type="module">Bonito.init_session("d260b830-7e44-4f24-b9cc-931a42cce769", Bonito.fetch_binary('bonito/bin/a21b2201557c6c0a6c5bfd627d5ec7ba7161ec0e-5426370609599134392.bin'), "sub", false);
+</script><div style="width: 100%; height: 100%; position: relative;" data-jscall-id="1"><canvas height="800px" data-jp-suppress-context-menu style="display: block" data-jscall-id="2" data-lm-suppress-shortcuts="true" width="800px" tabindex="0"></canvas><div class="wglmakie-spinner" data-jscall-id="3"></div></div></div></div></div><p>Reproduce the 4-panel TS2 ACE L3 pitch-angle distribution plot from https://tracers.physics.uiowa.edu/l3-public-data-products</p><pre><code class="language-julia hljs">ds = TS2_L3_ACE_PITCH_ANGLE_DIST(&quot;2025-09-30&quot;, &quot;2025-10-01&quot;)
+da = DimArray(ds[&quot;ts2_l3_ace_pitch_def&quot;])
+da[da .&lt;= 0] .= 0
+
+# Apply log10 colorscale metadata
+da = setmeta(da, :colorscale =&gt; log10, &quot;UNITS&quot; =&gt; &quot;eV / (eV cm² sr s)&quot;)
+
+# Energy-averaged
+en_avg = setmeta(nanmean(da; dim = 1), &quot;CATDESC&quot; =&gt; &quot;Energy-Averaged Flux&quot;)
+
+# Pitch-angle-averaged
+pa_avg = setmeta(nanmean(da; dim = 2), &quot;CATDESC&quot; =&gt; &quot;Pitch Angle-Averaged Flux&quot;)
+
+# Fixed energy 198.9 eV
+# Energy dim is ReverseOrdered (descending), index 36 ≈ 198.9 eV
+e_slice = setmeta(da[X(Near(198.9f0))], &quot;CATDESC&quot; =&gt; &quot;Energy Channel: 198.9 eV&quot;)
+
+# Fixed pitch angle bin 10-20° (center 15°)
+pa_slice = setmeta(da[Y(Near(15.0f0))], &quot;CATDESC&quot; =&gt; &quot;Pitch Angle Bin: 10-20°&quot;)
+
+fig = tplot([en_avg, pa_avg, e_slice, pa_slice], t0, t1; add_title = true, colormap = :rainbow_bgyrm_35_85_c69_n256)</code></pre><div class="bonito-fragment" id="e4453c7a-7c5c-4851-83cc-26674779ce14" data-jscall-id="subsession-application-dom"><div><style></style><style>.wglmakie-spinner {
+  left: 50%;
+  z-index: 1000;
+  height: 40px;
+  position: absolute;
+  border-radius: 50%;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  animation: wglmakie-spin 1.0s linear infinite;
+  top: 50%;
+  border-top: 4px solid currentColor;
+  width: 40px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+@keyframes wglmakie-spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+</style></div><div><script type="module">Bonito.init_session("e4453c7a-7c5c-4851-83cc-26674779ce14", Bonito.fetch_binary('bonito/bin/d3564e4869e0cfedca8a3eb48ac3abdb841e9ab0-2902321758238347577.bin'), "sub", false);
+</script><div style="width: 100%; height: 100%; position: relative;" data-jscall-id="4"><canvas height="800px" data-jp-suppress-context-menu style="display: block" data-jscall-id="5" data-lm-suppress-shortcuts="true" width="800px" tabindex="0"></canvas><div class="wglmakie-spinner" data-jscall-id="6"></div></div></div></div><h3 id="ROI-—-Region-of-Interest"><a class="docs-heading-anchor" href="#ROI-—-Region-of-Interest">ROI — Region of Interest</a><a id="ROI-—-Region-of-Interest-1"></a><a class="docs-heading-anchor-permalink" href="#ROI-—-Region-of-Interest" title="Permalink"></a></h3><p>Event interval lists in CSV format. Returns a <code>DataFrame</code>:</p><pre><code class="language-julia hljs">roi_df = TS2_ROI();
+first(roi_df, 5)</code></pre><div><div style = "float: left;"><span>5×5 DataFrame</span></div><div style = "clear: both;"></div></div><div class = "data-frame" style = "overflow-x: scroll;"><table class = "data-frame" style = "margin-bottom: 6px;"><thead><tr class = "columnLabelRow"><th class = "stubheadLabel" style = "font-weight: bold; text-align: right;">Row</th><th style = "text-align: left;">Start_Epoch</th><th style = "text-align: left;">End_Epoch</th><th style = "text-align: left;">Orbit_Num</th><th style = "text-align: left;">ROI_Num</th><th style = "text-align: left;">Event_Tag</th></tr><tr class = "columnLabelRow"><th class = "stubheadLabel" style = "font-weight: bold; text-align: right;"></th><th title = "Dates.DateTime" style = "text-align: left;">DateTime</th><th title = "Dates.DateTime" style = "text-align: left;">DateTime</th><th title = "Int64" style = "text-align: left;">Int64</th><th title = "Int64" style = "text-align: left;">Int64</th><th title = "InlineStrings.String15" style = "text-align: left;">String15</th></tr></thead><tbody><tr class = "dataRow"><td class = "rowLabel" style = "font-weight: bold; text-align: right;">1</td><td style = "text-align: left;">2025-07-27T02:24:28</td><td style = "text-align: left;">2025-07-27T02:31:05</td><td style = "text-align: right;">49</td><td style = "text-align: right;">1</td><td style = "text-align: left;">TS2_ROI_00049_1</td></tr><tr class = "dataRow"><td class = "rowLabel" style = "font-weight: bold; text-align: right;">2</td><td style = "text-align: left;">2025-07-27T04:00:37</td><td style = "text-align: left;">2025-07-27T04:07:49</td><td style = "text-align: right;">50</td><td style = "text-align: right;">1</td><td style = "text-align: left;">TS2_ROI_00050_1</td></tr><tr class = "dataRow"><td class = "rowLabel" style = "font-weight: bold; text-align: right;">3</td><td style = "text-align: left;">2025-07-27T05:37:19</td><td style = "text-align: left;">2025-07-27T05:44:27</td><td style = "text-align: right;">51</td><td style = "text-align: right;">1</td><td style = "text-align: left;">TS2_ROI_00051_1</td></tr><tr class = "dataRow"><td class = "rowLabel" style = "font-weight: bold; text-align: right;">4</td><td style = "text-align: left;">2025-07-27T07:14:24</td><td style = "text-align: left;">2025-07-27T07:21:28</td><td style = "text-align: right;">52</td><td style = "text-align: right;">1</td><td style = "text-align: left;">TS2_ROI_00052_1</td></tr><tr class = "dataRow"><td class = "rowLabel" style = "font-weight: bold; text-align: right;">5</td><td style = "text-align: left;">2025-07-27T08:51:47</td><td style = "text-align: left;">2025-07-27T08:58:56</td><td style = "text-align: right;">53</td><td style = "text-align: right;">1</td><td style = "text-align: left;">TS2_ROI_00053_1</td></tr></tbody></table></div><h2 id="API"><a class="docs-heading-anchor" href="#API">API</a><a id="API-1"></a><a class="docs-heading-anchor-permalink" href="#API" title="Permalink"></a></h2><h3 id="Instruments"><a class="docs-heading-anchor" href="#Instruments">Instruments</a><a id="Instruments-1"></a><a class="docs-heading-anchor-permalink" href="#Instruments" title="Permalink"></a></h3><article><details class="docstring" open="true"><summary id="TRACERSData.ACE"><a class="docstring-binding" href="#TRACERSData.ACE"><code>TRACERSData.ACE</code></a> — <span class="docstring-category">Constant</span></summary><section><div><pre><code class="language-julia hljs">ACE</code></pre><p>Analyzer of Cusp Electrons. Measures electron energy spectra and pitch-angle distributions.</p><p><strong>Datasets</strong></p><ul><li><code>TS1_L2_ACE_DEF</code>, <code>TS2_L2_ACE_DEF</code>: Level 2 default spectra (counts + differential energy flux)</li><li><code>TS1_L3_ACE_PITCH_ANGLE_DIST</code>, <code>TS2_L3_ACE_PITCH_ANGLE_DIST</code>: Level 3 pitch-angle distributions</li></ul><p><strong>Usage</strong></p><pre><code class="language-julia hljs">ACE(; probe=&quot;ts2&quot;, level=&quot;l3&quot;)  # resolve dataset (default: ts2, l2)
+ACE()(&quot;2025-09-27&quot;, &quot;2025-09-28&quot;)  # load data</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/JuliaSpacePhysics/TRACERSData.jl/blob/2264f5eab4554b96107c02ee0e72be764279b0ac/src/ace.jl#L47-L63">source</a></section></details></article><article><details class="docstring" open="true"><summary id="TRACERSData.ACI"><a class="docstring-binding" href="#TRACERSData.ACI"><code>TRACERSData.ACI</code></a> — <span class="docstring-category">Constant</span></summary><section><div><pre><code class="language-julia hljs">ACI</code></pre><p>Analyzer of Cusp Ions. Toroidal top-hat electrostatic analyzer providing ion flux and pitch-angle distributions. 47 energy steps (8 eV/e – 20 keV/e), 312 ms cadence.</p><p><strong>Datasets</strong></p><ul><li><code>TS1_L2_ACI_IPD</code>, <code>TS2_L2_ACI_IPD</code>: Level 2 ion pitch-angle distributions</li></ul><p><strong>Usage</strong></p><pre><code class="language-julia hljs">ACI(; probe=&quot;ts2&quot;)  # resolve dataset</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/JuliaSpacePhysics/TRACERSData.jl/blob/2264f5eab4554b96107c02ee0e72be764279b0ac/src/aci.jl#L25-L40">source</a></section></details></article><article><details class="docstring" open="true"><summary id="TRACERSData.MSC"><a class="docstring-binding" href="#TRACERSData.MSC"><code>TRACERSData.MSC</code></a> — <span class="docstring-category">Constant</span></summary><section><div><pre><code class="language-julia hljs">MSC</code></pre><p>Magnetic Search Coil. 3-axis AC magnetic field waveforms at 2048 S/s, amplitude-calibrated at 100 Hz. Complex frequency response calibration included in CDFs.</p><p><strong>Datasets</strong></p><ul><li><code>TS1_L2_MSC_BAC</code>, <code>TS2_L2_MSC_BAC</code>: Level 2 AC magnetic field waveforms</li></ul><p><strong>Usage</strong></p><pre><code class="language-julia hljs">MSC(; probe=&quot;ts2&quot;)  # resolve dataset</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/JuliaSpacePhysics/TRACERSData.jl/blob/2264f5eab4554b96107c02ee0e72be764279b0ac/src/msc.jl#L25-L40">source</a></section></details></article><article><details class="docstring" open="true"><summary id="TRACERSData.MAGIC"><a class="docstring-binding" href="#TRACERSData.MAGIC"><code>TRACERSData.MAGIC</code></a> — <span class="docstring-category">Constant</span></summary><section><div><pre><code class="language-julia hljs">MAGIC</code></pre><p>Magnetometer Demonstration. 3-axis DC magnetic field measurements at 128 S/s (ROI) / 16 S/s (back orbit). Calibrated against IGRF scalar magnitude. Available in instrument frame, GEI2000, and NEC coordinates.</p><p><strong>Datasets</strong></p><ul><li><code>TS1_L2_MAGIC</code>, <code>TS2_L2_MAGIC</code>: Level 2 DC magnetic field</li></ul><p><strong>Usage</strong></p><pre><code class="language-julia hljs">MAGIC(; probe=&quot;ts2&quot;)  # resolve dataset
+MAGIC(&quot;2025-09-27&quot;, &quot;2025-09-28&quot;; probe=&quot;ts2&quot;)  # load data</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/JuliaSpacePhysics/TRACERSData.jl/blob/2264f5eab4554b96107c02ee0e72be764279b0ac/src/magic.jl#L35-L51">source</a></section></details></article><article><details class="docstring" open="true"><summary id="TRACERSData.EFI"><a class="docstring-binding" href="#TRACERSData.EFI"><code>TRACERSData.EFI</code></a> — <span class="docstring-category">Constant</span></summary><section><div><pre><code class="language-julia hljs">EFI</code></pre><p>Electric Field Instrument. DC-coupled probe potentials (VDC), electric field (EDC), AC waveforms (EAC), and high-frequency snapshots (EHF).</p><div class="admonition is-warning" id="Team-only-81fc81594a5a33a"><header class="admonition-header">Team-only<a class="admonition-anchor" href="#Team-only-81fc81594a5a33a" title="Permalink"></a></header><div class="admonition-body"><p>EFI data is not yet available on the public portal. Use the team portal for access.</p></div></div></div><a class="docs-sourcelink" target="_blank" href="https://github.com/JuliaSpacePhysics/TRACERSData.jl/blob/2264f5eab4554b96107c02ee0e72be764279b0ac/src/efi.jl#L5-L13">source</a></section></details></article><article><details class="docstring" open="true"><summary id="TRACERSData.EPH"><a class="docstring-binding" href="#TRACERSData.EPH"><code>TRACERSData.EPH</code></a> — <span class="docstring-category">Constant</span></summary><section><div><pre><code class="language-julia hljs">EPH</code></pre><p>Ephemeris. Definitive and predictive orbit attitude data.</p><div class="admonition is-warning" id="Team-only-5a444e7fd61e1678"><header class="admonition-header">Team-only<a class="admonition-anchor" href="#Team-only-5a444e7fd61e1678" title="Permalink"></a></header><div class="admonition-body"><p>Ephemeris data is not yet available on the public portal. Use the team portal for access.</p></div></div></div><a class="docs-sourcelink" target="_blank" href="https://github.com/JuliaSpacePhysics/TRACERSData.jl/blob/2264f5eab4554b96107c02ee0e72be764279b0ac/src/eph.jl#L5-L12">source</a></section></details></article><h3 id="Datasets"><a class="docs-heading-anchor" href="#Datasets">Datasets</a><a id="Datasets-1"></a><a class="docs-heading-anchor-permalink" href="#Datasets" title="Permalink"></a></h3><article><details class="docstring" open="true"><summary id="TRACERSData.TS1_L2_ACE_DEF"><a class="docstring-binding" href="#TRACERSData.TS1_L2_ACE_DEF"><code>TRACERSData.TS1_L2_ACE_DEF</code></a> — <span class="docstring-category">Constant</span></summary><section><div><pre><code class="language-julia hljs">TS1_L2_ACE_DEF</code></pre><p>ACE Level 2 default electron spectra for TS1. Contains raw measured counts and calibrated differential energy flux as a function of anode angle and calibrated energy. 49 energy steps × 21 anodes, 50 ms cadence.</p></div><a class="docs-sourcelink" target="_blank" href="https://github.com/JuliaSpacePhysics/TRACERSData.jl/blob/2264f5eab4554b96107c02ee0e72be764279b0ac/src/ace.jl#L1-L6">source</a></section></details></article><article><details class="docstring" open="true"><summary id="TRACERSData.TS1_L2_ACI_IPD"><a class="docstring-binding" href="#TRACERSData.TS1_L2_ACI_IPD"><code>TRACERSData.TS1_L2_ACI_IPD</code></a> — <span class="docstring-category">Constant</span></summary><section><div><pre><code class="language-julia hljs">TS1_L2_ACI_IPD</code></pre><p>ACI Level 2 ion pitch-angle distributions for TS1. Differential energy flux as a function of epoch, energy (47 bins), and look angle (16 directions). 312 ms cadence.</p></div><a class="docs-sourcelink" target="_blank" href="https://github.com/JuliaSpacePhysics/TRACERSData.jl/blob/2264f5eab4554b96107c02ee0e72be764279b0ac/src/aci.jl#L1-L6">source</a></section></details></article><article><details class="docstring" open="true"><summary id="TRACERSData.TS1_L2_MAGIC"><a class="docstring-binding" href="#TRACERSData.TS1_L2_MAGIC"><code>TRACERSData.TS1_L2_MAGIC</code></a> — <span class="docstring-category">Constant</span></summary><section><div><pre><code class="language-julia hljs">TS1_L2_MAGIC</code></pre><p>MAGIC Level 2 3-axis DC magnetic field for TS1. Available in instrument frame, GEI2000, and NEC coordinates. 128 S/s (ROI) / 16 S/s (back orbit).</p></div><a class="docs-sourcelink" target="_blank" href="https://github.com/JuliaSpacePhysics/TRACERSData.jl/blob/2264f5eab4554b96107c02ee0e72be764279b0ac/src/magic.jl#L11-L16">source</a></section></details></article><article><details class="docstring" open="true"><summary id="TRACERSData.TS1_L2_MSC_BAC"><a class="docstring-binding" href="#TRACERSData.TS1_L2_MSC_BAC"><code>TRACERSData.TS1_L2_MSC_BAC</code></a> — <span class="docstring-category">Constant</span></summary><section><div><pre><code class="language-julia hljs">TS1_L2_MSC_BAC</code></pre><p>MSC Level 2 3-axis AC magnetic field waveforms for TS1. Sampled at 2048 S/s, amplitude-calibrated at 100 Hz. Available in TSCS and FAC coordinates.</p></div><a class="docs-sourcelink" target="_blank" href="https://github.com/JuliaSpacePhysics/TRACERSData.jl/blob/2264f5eab4554b96107c02ee0e72be764279b0ac/src/msc.jl#L1-L6">source</a></section></details></article><article><details class="docstring" open="true"><summary id="TRACERSData.TS1_L3_ACE_PITCH_ANGLE_DIST"><a class="docstring-binding" href="#TRACERSData.TS1_L3_ACE_PITCH_ANGLE_DIST"><code>TRACERSData.TS1_L3_ACE_PITCH_ANGLE_DIST</code></a> — <span class="docstring-category">Constant</span></summary><section><div><pre><code class="language-julia hljs">TS1_L3_ACE_PITCH_ANGLE_DIST</code></pre><p>ACE Level 3 pitch-angle resolved electron distributions for TS1.</p></div><a class="docs-sourcelink" target="_blank" href="https://github.com/JuliaSpacePhysics/TRACERSData.jl/blob/2264f5eab4554b96107c02ee0e72be764279b0ac/src/ace.jl#L25-L29">source</a></section></details></article><article><details class="docstring" open="true"><summary id="TRACERSData.TS1_ROI"><a class="docstring-binding" href="#TRACERSData.TS1_ROI"><code>TRACERSData.TS1_ROI</code></a> — <span class="docstring-category">Constant</span></summary><section><div><pre><code class="language-julia hljs">TS1_ROI</code></pre><p>TS1 Region of Interest event intervals. Returns a <code>DataFrame</code> when called.</p></div><a class="docs-sourcelink" target="_blank" href="https://github.com/JuliaSpacePhysics/TRACERSData.jl/blob/2264f5eab4554b96107c02ee0e72be764279b0ac/src/roi.jl#L25-L29">source</a></section></details></article><article><details class="docstring" open="true"><summary id="TRACERSData.TS2_L2_ACE_DEF"><a class="docstring-binding" href="#TRACERSData.TS2_L2_ACE_DEF"><code>TRACERSData.TS2_L2_ACE_DEF</code></a> — <span class="docstring-category">Constant</span></summary><section><div><pre><code class="language-julia hljs">TS2_L2_ACE_DEF</code></pre><p>ACE Level 2 default electron spectra for TS2. Contains raw measured counts and calibrated differential energy flux as a function of anode angle and calibrated energy. 49 energy steps × 21 anodes, 50 ms cadence.</p></div><a class="docs-sourcelink" target="_blank" href="https://github.com/JuliaSpacePhysics/TRACERSData.jl/blob/2264f5eab4554b96107c02ee0e72be764279b0ac/src/ace.jl#L13-L18">source</a></section></details></article><article><details class="docstring" open="true"><summary id="TRACERSData.TS2_L2_ACI_IPD"><a class="docstring-binding" href="#TRACERSData.TS2_L2_ACI_IPD"><code>TRACERSData.TS2_L2_ACI_IPD</code></a> — <span class="docstring-category">Constant</span></summary><section><div><pre><code class="language-julia hljs">TS2_L2_ACI_IPD</code></pre><p>ACI Level 2 ion pitch-angle distributions for TS2. Differential energy flux as a function of epoch, energy (47 bins), and look angle (16 directions). 312 ms cadence.</p></div><a class="docs-sourcelink" target="_blank" href="https://github.com/JuliaSpacePhysics/TRACERSData.jl/blob/2264f5eab4554b96107c02ee0e72be764279b0ac/src/aci.jl#L13-L18">source</a></section></details></article><article><details class="docstring" open="true"><summary id="TRACERSData.TS2_L2_MAGIC"><a class="docstring-binding" href="#TRACERSData.TS2_L2_MAGIC"><code>TRACERSData.TS2_L2_MAGIC</code></a> — <span class="docstring-category">Constant</span></summary><section><div><pre><code class="language-julia hljs">TS2_L2_MAGIC</code></pre><p>MAGIC Level 2 3-axis DC magnetic field for TS2. Available in instrument frame, GEI2000, and NEC coordinates. 128 S/s (ROI) / 16 S/s (back orbit).</p></div><a class="docs-sourcelink" target="_blank" href="https://github.com/JuliaSpacePhysics/TRACERSData.jl/blob/2264f5eab4554b96107c02ee0e72be764279b0ac/src/magic.jl#L23-L28">source</a></section></details></article><article><details class="docstring" open="true"><summary id="TRACERSData.TS2_L2_MSC_BAC"><a class="docstring-binding" href="#TRACERSData.TS2_L2_MSC_BAC"><code>TRACERSData.TS2_L2_MSC_BAC</code></a> — <span class="docstring-category">Constant</span></summary><section><div><pre><code class="language-julia hljs">TS2_L2_MSC_BAC</code></pre><p>MSC Level 2 3-axis AC magnetic field waveforms for TS2. Sampled at 2048 S/s, amplitude-calibrated at 100 Hz. Available in TSCS and FAC coordinates.</p></div><a class="docs-sourcelink" target="_blank" href="https://github.com/JuliaSpacePhysics/TRACERSData.jl/blob/2264f5eab4554b96107c02ee0e72be764279b0ac/src/msc.jl#L13-L18">source</a></section></details></article><article><details class="docstring" open="true"><summary id="TRACERSData.TS2_L3_ACE_PITCH_ANGLE_DIST"><a class="docstring-binding" href="#TRACERSData.TS2_L3_ACE_PITCH_ANGLE_DIST"><code>TRACERSData.TS2_L3_ACE_PITCH_ANGLE_DIST</code></a> — <span class="docstring-category">Constant</span></summary><section><div><pre><code class="language-julia hljs">TS2_L3_ACE_PITCH_ANGLE_DIST</code></pre><p>ACE Level 3 pitch-angle resolved electron distributions for TS2.</p></div><a class="docs-sourcelink" target="_blank" href="https://github.com/JuliaSpacePhysics/TRACERSData.jl/blob/2264f5eab4554b96107c02ee0e72be764279b0ac/src/ace.jl#L36-L40">source</a></section></details></article><article><details class="docstring" open="true"><summary id="TRACERSData.TS2_ROI"><a class="docstring-binding" href="#TRACERSData.TS2_ROI"><code>TRACERSData.TS2_ROI</code></a> — <span class="docstring-category">Constant</span></summary><section><div><pre><code class="language-julia hljs">TS2_ROI</code></pre><p>TS2 Region of Interest event intervals. Returns a <code>DataFrame</code> when called.</p></div><a class="docs-sourcelink" target="_blank" href="https://github.com/JuliaSpacePhysics/TRACERSData.jl/blob/2264f5eab4554b96107c02ee0e72be764279b0ac/src/roi.jl#L35-L39">source</a></section></details></article></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.17.0 on <span class="colophon-date" title="Wednesday 15 April 2026 07:28">Wednesday 15 April 2026</span>. Using Julia version 1.12.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

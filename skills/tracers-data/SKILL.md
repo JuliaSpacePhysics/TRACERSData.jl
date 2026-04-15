@@ -28,18 +28,18 @@ size(flux)        # (49, 21, N) → (energy_steps, anode_angles, epochs)
 
 ### ACE L2
 
-- `ts2_l2_ace_def` — diff energy flux (**negative values valid** — background subtraction)
+- `ts2_l2_ace_def` — differential energy flux (DEF) (**negative values valid** — background subtraction)
+  - Dimensions: `ts2_l2_ace_energy` (49, eV) × `ts2_l2_ace_TSCS_anode_angle` (21, look direction angles) × `Epoch`
 - `ts2_l2_ace_counts` / `ts2_l2_ace_background_counts` — raw + background counts
-- `ts2_l2_ace_energy` — 49 energy bin values (eV)
-- `ts2_l2_ace_TSCS_anode_angle` — 21 look direction angles
 
 ### ACE L3
 
-- `ts2_l3_ace_pitch_angle_dist` — pitch angle distributions
+- `ts2_l3_ace_pitch_def`
+  - Dimensions: `ts2_l3_ace_energy` (49, eV) × `ts2_l3_ace_pitch_angle` (18, pitch angles) × `Epoch`
 
 ### ACI L2
 
-- `ts2_l2_aci_tscs_def` — ion diff energy flux in TSCS frame
+- `ts2_l2_aci_tscs_def` — ion DEF in TSCS frame
 - `ts2_l2_aci_tscs_def_sorted_counts` / `ts2_l2_aci_tscs_def_errors` — counts + errors
 - `ts2_l2_aci_tscs_pitch_angle` — pitch angle per measurement
 - `ts2_l2_aci_energy` / `ts2_l2_aci_tscs_anode_angle` — 47 energies, 16 anode angles

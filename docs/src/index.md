@@ -73,7 +73,10 @@ eflux  = DimArray(ace_ds["ts2_l2_ace_def"])
 counts = DimArray(ace_ds["ts2_l2_ace_counts"])
 
 eflux.metadata["VAR_NOTES"]
-# "ACE electron differential energy flux as a function of epoch, energy (49 bins) and look angle (21 directions). Note that small negative values are allowed, due to background subtraction."
+```
+
+```@example quick_plot
+eflux = setmeta(eflux, "UNITS" => "eV / (eV cm² sr s)")
 eflux[eflux .<= 0] .= 0
 counts = setmeta(counts, :colorscale => log10)
 
@@ -85,7 +88,7 @@ en_counts = nanmean(counts; dim=2)
 an_eflux  = nanmean(eflux; dim=1)
 an_counts = nanmean(counts; dim=1)
 
-tplot([en_eflux, an_eflux, en_counts, an_counts], t0, t1)
+tplot([en_eflux, an_eflux, en_counts, an_counts], t0, t1; colormap = :rainbow_bgyrm_35_85_c69_n256)
 ```
 
 Reproduce the 4-panel TS2 ACE L3 pitch-angle distribution plot from https://tracers.physics.uiowa.edu/l3-public-data-products
@@ -111,17 +114,15 @@ e_slice = setmeta(da[X(Near(198.9f0))], "CATDESC" => "Energy Channel: 198.9 eV")
 # Fixed pitch angle bin 10-20° (center 15°)
 pa_slice = setmeta(da[Y(Near(15.0f0))], "CATDESC" => "Pitch Angle Bin: 10-20°")
 
-fig = tplot([en_avg, pa_avg, e_slice, pa_slice], t0, t1; add_title = true)
+fig = tplot([en_avg, pa_avg, e_slice, pa_slice], t0, t1; add_title = true, colormap = :rainbow_bgyrm_35_85_c69_n256)
 ```
 
 ### ROI — Region of Interest
 
-Event interval lists in CSV format. Returns a `DataFrame`.
-
-Call it to download and parse the CSV:
+Event interval lists in CSV format. Returns a `DataFrame`:
 
 ```@example quick_start
-roi_df = TS2_ROI();  # returns DataFrame
+roi_df = TS2_ROI();
 first(roi_df, 5)
 ```
 
@@ -143,12 +144,4 @@ EPH
 ```@autodocs
 Modules = [TRACERSData]
 Filter = t -> t isa TRACERSData.TRACERSLogicalDataset || t isa TRACERSData.TRACERSROIDataset
-```
-
-### Functions and Types
-
-```@autodocs
-Modules = [TRACERSData]
-Private = false
-Order   = [:function, :type]
 ```

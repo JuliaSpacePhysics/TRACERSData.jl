@@ -1,0 +1,30 @@
+name: Documentation - Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "src/**"
+      - "docs/**"
+      - "Project.toml"
+    tags: ["*"]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  # Skip intermediate builds: always.
+  # Cancel intermediate builds: only if it is a pull request build.
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
+
+jobs:
+  build:
+    permissions:
+      contents: write
+      pull-requests: read
+      statuses: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build and deploy Documenter.jl docs
+        uses: JuliaSpacePhysics/actions/DocsDocumenter@main

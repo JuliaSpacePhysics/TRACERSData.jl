@@ -20,3 +20,5 @@ updates:
       julia-dependencies:
         patterns:
           - "*"
+    ignore:
+      - dependency-name: TRACERSData
